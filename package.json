@@ -1,0 +1,21 @@
+{
+  "name": "mongoose-bcrypt-plugin",
+  "version": "0.1.0",
+  "description": "Add mongoose Schema fields stored as irreversible Bcrypt data via a plugin.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/samtheprogram/mongoose-bcrypt-plugin"
+  },
+  "author": "Sam Moore <sam@toldmedia.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3"
+  },
+  "peerDependencies": {
+    "mongoose": "^4.7.0"
+  }
+}
