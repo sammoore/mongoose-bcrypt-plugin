@@ -1,6 +1,6 @@
 {
   "name": "mongoose-bcrypt-plugin",
-  "version": "0.1.1",
+  "version": "0.1.2-pre",
   "description": "Add mongoose Schema fields stored as irreversible Bcrypt data via a plugin.",
   "main": "index.js",
   "scripts": {
