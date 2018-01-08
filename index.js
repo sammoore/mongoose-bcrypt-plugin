@@ -3,7 +3,7 @@
 const { assign } = Object;
 
 const assert = require('assert');
-const bcrypt = require('./bcrypt');
+const bcrypt = require('./lib/bcrypt');
 const mongoose = require('mongoose');
 
 module.exports = bcryptPlugin;
