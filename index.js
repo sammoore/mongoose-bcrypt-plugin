@@ -6,9 +6,10 @@ const assert = require('assert');
 const bcrypt = require('./bcrypt');
 const mongoose = require('mongoose');
 
-class BcryptPluginError extends Error {};
+module.exports = bcryptPlugin;
+bcryptPlugin.Error = class BcryptPluginError extends Error {};
 
-module.exports = function bcryptPlugin(key, rounds = 8) {
+function bcryptPlugin(key, rounds = 8) {
   assert.ok(key, 'key required');
   assert.ok(typeof key == 'string', 'key must be a string');
   assert.ok(key.length > 0, 'key.length must be > 0');
@@ -22,8 +23,8 @@ module.exports = function bcryptPlugin(key, rounds = 8) {
 
   return function plugin(schema, options) {
     // expose error type on schema and Model
-    schema.BcryptPluginError = BcryptPluginError;
-    schema.statics.BcryptPluginError = BcryptPluginError;
+    schema.BcryptPluginError = bcryptPlugin.Error;
+    schema.statics.BcryptPluginError = bcryptPlugin.Error;
 
     schema.add({
       [key]: assign({ type: String }, options)
@@ -50,8 +51,6 @@ module.exports = function bcryptPlugin(key, rounds = 8) {
   };
 }
 
-bcryptPlugin.Error = BcryptPluginError;
-
 // some bcrypt implementations always throw an error (on failure); so do we.
 function compareHash(text, hash) {
   return bcrypt.compare(text, hash)
@@ -60,7 +59,7 @@ function compareHash(text, hash) {
     return success;
   })
   .catch((err) => {
-    throw new BcryptPluginError();
+    throw new bcryptPlugin.Error();
   });
 }
 
